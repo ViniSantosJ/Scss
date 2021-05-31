@@ -1,4 +1,4 @@
-Import
+										Import
 
 Ex:
 @import "nome_do_arquivo.scss" 
@@ -6,7 +6,7 @@ Ex:
 Ele vai importar todo o conteúdo do arquivo e adicionará no arquivo css (na ordem).
 
 
-Variáveis
+										Variáveis
 
 Ex: 
 $cor_principal: #85C;
@@ -25,7 +25,8 @@ Para trocar a cor do .teste e .teste2, basta mudar o valor da variável.
 
 
 
-Nesting
+										Nesting
+
 -> É a capacidade de colocar um seletor dentro do outro.
 
 Ex:
@@ -102,7 +103,8 @@ Depois aberto E fechado a tag p{...} e depois aberto E fechado a tag a{...}
 
 
 
-& Nesting
+										& Nesting
+
 -> É usado o & quando você quer que ''grude'' o elemento anterior.
 
 Ex: 
@@ -129,4 +131,151 @@ ul.menu li a {
 
 ul.menu li a:hover {
 	backgroud-color: pink;
+}
+
+
+
+
+										Mixins
+
+-> Encapsula valores pra dentro de uma 'variável'
+
+Ex: 
+
+@mixin title-large {
+	font-size: 4em;
+	line-height: 1;
+	font-weight: bold;
+	font-family: monospace;
+}
+
+E para usar o mixin, basta fazer da seguinte forma: 
+
+h1 {
+	@include title-large;
+}
+
+No css, ficará assim: 
+
+h1 {
+	font-size: 4em;
+	line-height: 1;
+	font-weight: bold;
+	font-family: monospace;
+}
+
+Também é possível ter mixin dentro de outro mixin.
+
+@mixin title {
+	font-weight: bold;
+	font-family: monospace;
+}
+
+@mixin text-large {
+	font-size: 4em;
+	line-height: 1;
+}
+
+@mixin title-large {
+	@include title;
+	@include text-large;
+}
+
+
+										Os mixins aceitam ARGUMENTOS.
+
+Ex: 
+
+@mixin separador($color) {
+	&::after {
+		content: '';
+		display: block;
+		width: 100px;
+		height: 4px;
+		backgroud: $color;
+	}
+}
+
+Ao incluir esse mixin em um h1, deve ser feito dessa maneira: 
+
+h1 {
+	@include separador(#84E);
+}
+
+O resultado no css ficará assim:
+
+h1::after {
+	content: '';
+	display: block;
+	width: 100px;
+	height: 4px;
+	background: #84E;
+}
+
+Também é possível passar mais de um ARGUMENTO, basta separar por vírgulas
+
+Ex:
+
+@mixin separador($color, $largura) {
+	&::after {
+		content: '';
+		display: block;
+		width: $largura;
+		height: 4px;
+		backgroud: $color;
+	}
+}
+
+E para deixar um valor 'padrão' (caso não passe o argumento), basta fazer da seguinte forma: 
+
+@mixin separador($color: blue, $largura: 100px)
+
+Assim, se ao chamaro mixin separador e não for passado o argumento, o processador pegará os valores padrões e jogará no css.
+
+
+
+										Argumentos...
+										
+Para quando for usar uma propriedade que usa vários parâmeotrs para a mesma função.
+
+Ex: box-shadow: 10px 10px 0 0 rgba(0, 0, 0, 0.5), 
+	 	 					  15px 15px 0 0 rgba(0, 0, 0, 0.5),
+								20px 20px 0 0 rgba(0, 0, 0, 0.5);
+
+Para que o interpretador não ache que está passando 3 argumentos neste caso, usasse dessa forma: 
+
+@mixin box-shadow($shadow...) {
+	box-shadow: $shadow;	
+	-moz-box-shadow: $shadow;	
+	-webkit-box-shadow: $shadow;	
+}
+
+E para chamar esse mixin: 
+
+.modal {
+	@include box-shadow(10px 10px 0 0 rgba(0, 0, 0, 0.5), 
+	 	 							    15px 15px 0 0 rgba(0, 0, 0, 0.5),
+											20px 20px 0 0 rgba(0, 0, 0, 0.5))
+}
+
+
+
+										@content
+
+@mixin mobile {
+	@media (max-widht: 600px) {
+		@content;
+	}	
+}									
+
+Sendo assim, ao chamar o mixin mobile, eu vou passar o conteúdo na hora da sua chamada. 
+
+Ex: 
+
+p {
+	line-height: 1.4;
+	max-widht: 400px;
+	@include mobile {
+			font-size: .6em;
+	}
 }
