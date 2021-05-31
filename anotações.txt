@@ -279,3 +279,80 @@ p {
 			font-size: .6em;
 	}
 }
+
+
+										%placeholder
+
+Cria um estilo que não está atrelado a nada. 
+
+Ex: 
+
+%clearfix::after {
+	content: '';
+	display: table;
+	clear: both;
+}
+
+div {
+	@extend %clearfix;
+}
+
+section {
+	@extend %clearfix;
+}
+
+No css ficará da seguinte maneira: 
+
+div::after, section::after {
+	content: '';
+	display: table;
+	clear: both;
+}
+
+
+										Operadores
+
+Operadores comunds: Soma, subtração, maior, menor, etc.
+Obs: Dá para somar cores.
+
+Ex: 
+
+p {
+	font-size: 10px + 10;
+}
+
+Resultado:
+
+p {
+	font-size: 20px;
+}
+
+
+										Condicionais
+
+IF
+
+$tema: oceano;
+$primary-color: black;
+$secondary-color: gray;
+
+@if $tema == oceano {
+	$primary-color: blue;
+	$secondary-color: orange;
+} @else if $tema == deserto {
+	$primary-color: yellow;
+	$secondary-color: purple;
+}
+
+p {
+	color: $primary-color;
+	backgroud: $secondary-color;
+}
+
+
+O resultado: 
+
+p {
+	color: blue;
+	background: orange;
+}

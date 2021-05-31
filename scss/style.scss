@@ -1,3 +1,62 @@
+$tema: oceano;
+$primary-color: black;
+$secondary-color: gray;
+
+@if $tema == oceano {
+  $primary-color: blue;
+  $secondary-color: orange;
+} @else if $tema == deserto {
+  $primary-color: yellow;
+  $secondary-color: purple;
+}
+
+p {
+  color: $primary-color;
+  background: $secondary-color;
+}
+
+@mixin device($device) {
+  @if $device == mobile {
+    @media (max-width: 300px) {
+      @content;
+    }
+  } @else if $device == tablet {
+    @media (max-width: 600px) {
+      @content;
+    }
+  } @else if $device == computer {
+    @media (max-width: 900px) {
+      @content;
+    }
+  }
+}
+
+div {
+  width: 100%;
+  @include device(tablet) {
+    width: 80%;
+  }
+  @include device(mobile) {
+    width: 60%;
+  }
+}
+
+@mixin type-1($size) {
+  font-family: monospace;
+  font-weight: normal;
+  @if $size == 16 {
+    font-size: 1em;
+  } @else if $size == 18 {
+    font-size: 1.25em;
+  } @else if $size == 24 {
+    font-size: 1.5em;
+  }
+}
+
+p {
+  @include type-1(16);
+}
+
 @mixin title-large {
   font-size: 4em;
   line-height: 1;
@@ -56,7 +115,8 @@ section {
     @include separador;
   }
   p {
-    font-size: 1.2em;
+    // font-size: 1.2em;
+    @include type-1(24);
     line-height: 1.4;
     max-width: 400px;
     font-family: $font-primaria;

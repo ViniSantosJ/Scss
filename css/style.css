@@ -1,3 +1,30 @@
+p {
+  color: blue;
+  background: orange;
+}
+
+div {
+  width: 100%;
+}
+
+@media (max-width: 600px) {
+  div {
+    width: 80%;
+  }
+}
+
+@media (max-width: 300px) {
+  div {
+    width: 60%;
+  }
+}
+
+p {
+  font-family: monospace;
+  font-weight: normal;
+  font-size: 1em;
+}
+
 section {
   max-width: 600px;
   margin: 0 auto;
@@ -31,7 +58,9 @@ section {
 }
 
 .modal p {
-  font-size: 1.2em;
+  font-family: monospace;
+  font-weight: normal;
+  font-size: 1.5em;
   line-height: 1.4;
   max-width: 400px;
   font-family: monospace;
