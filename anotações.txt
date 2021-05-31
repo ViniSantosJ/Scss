@@ -1,0 +1,134 @@
+Import
+
+Ex:
+@import "nome_do_arquivo.scss" 
+
+Ele vai importar todo o conteúdo do arquivo e adicionará no arquivo css (na ordem).
+
+
+Variáveis
+
+Ex: 
+$cor_principal: #85C;
+
+
+.teste {
+	color: $cor_principal;
+}
+
+.teste2 {
+	background-coloor: $cor_principal;
+}
+
+
+Para trocar a cor do .teste e .teste2, basta mudar o valor da variável.
+
+
+
+Nesting
+-> É a capacidade de colocar um seletor dentro do outro.
+
+Ex:
+
+ul.menu {
+	text-align: center;
+	li {
+		list-syle: none;
+		display: inline-block;
+		a {
+			text-decoration: none;
+			display: block;
+			padding: 20px;
+		}
+	}
+}
+
+Ao ser compilado, irá transormar no seguinte CSS: 
+
+ul.menu {
+	text-align: center;
+}
+
+ul.menu li {
+	list-style: none;
+	display: inline-block;
+}
+
+ul.menu li a {
+	text-decoration: none;
+	display: block;
+	padding: 20px;	
+}
+
+
+
+Agora se for feito da seguinte forma, por exemplo: 
+
+.modal {
+  h1 {
+    color: $cor-primaria;
+
+  }
+  p {
+    font-size: 1.2em;
+
+  }
+  a {
+    display: block;
+
+  }
+}
+
+
+Vai gerar o seguinte css: 
+
+.modal h1 {
+  color: blue;
+
+}
+
+.modal p {
+  font-size: 1.2em;
+
+}
+
+.modal a {
+  display: block;
+}
+
+
+Isso acontece pelo fato de que, foi colocado uma classe (.modal{ ) e aberto E fechado em seguida a tag h1 {...}
+Depois aberto E fechado a tag p{...} e depois aberto E fechado a tag a{...} 
+
+
+
+
+
+& Nesting
+-> É usado o & quando você quer que ''grude'' o elemento anterior.
+
+Ex: 
+
+ul.menu li {
+	display: inline-block;
+	a {
+		display: block;
+		&:hover {
+			background-color: pink;
+		}
+	}
+}
+
+O resultado no css ficará assim:
+
+ul.menu li {
+	display: inline-block;
+}
+
+ul.menu li a {
+	display: block;
+}
+
+ul.menu li a:hover {
+	backgroud-color: pink;
+}
