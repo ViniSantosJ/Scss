@@ -102,8 +102,6 @@ Depois aberto E fechado a tag p{...} e depois aberto E fechado a tag a{...}
 
 
 
-
-
 & Nesting
 -> É usado o & quando você quer que ''grude'' o elemento anterior.
 
