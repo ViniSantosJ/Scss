@@ -1,0 +1,34 @@
+$lista: facebook twitter pinterest instagram snapchat;
+
+@each $item in $lista /*o $item recebe o coteúdo do $lista*/ {
+  .#{$item}-icon {
+    background-image: url("../img/#{$item}.png");
+  }
+}
+
+$numero: 1;
+
+@while $numero <= 6 {
+  .type-#{$numero} {
+    font-size: 16 * $numero + px;
+  }
+  $numero: $numero + 1;
+}
+
+@for $i from 1 through 16 {
+  $width: $i / 16 * 100 + %;
+  .porcento-#{$i} {
+    width: $width;
+  }
+}
+
+$container: 768;
+$gutter: 20;
+$colunas: 12;
+
+@for $i from 1 through 12 {
+  $width: $container / $colunas * $i - $gutter;
+  .grid-#{$i} {
+    width: $width + px;
+  }
+}

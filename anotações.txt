@@ -408,3 +408,110 @@ div {
 }
 
 -> É bom para definir grids.
+
+
+
+								Loop
+
+Ex:
+
+@for $i from 1 through 6 {
+	.item-#{$i} {
+		width: 100px * $i;
+	}
+}
+
+Resultado: 
+
+.item-1 {
+	width: 100px;
+}
+
+.item-2 {
+	width: 200px;
+}
+
+.item-3 {
+	width: 300px;
+}
+
+.item-4 {
+	width: 400px;
+}
+
+.item-5 {
+	width: 500px;
+}
+
+.item-6 {
+	width: 600px;
+}
+
+
+								@while
+
+$i: 1;
+
+@while $i <= 6 {
+	.type-#{$i} {
+		font-size: 16 * $1 + px;
+	}
+	$i; $i + 1;
+}
+
+
+Resultado:
+
+.item-1 {
+	width: 16px;
+}
+
+.item-2 {
+	width: 32px;
+}
+
+.item-3 {
+	width: 48px;
+}
+
+.item-4 {
+	width: 64px;
+}
+
+.item-5 {
+	width: 80px;
+}
+
+.item-6 {
+	width: 96px;
+}
+
+
+								@each
+
+$redes: facebook twitter pinterest instagram;
+
+@each $rede in $redes {
+	.#{$rede}-icon {
+		background-image: url('../img/#{$rede}.png');
+	}
+}
+
+
+Resultado: 
+
+.facebook-icon {
+  background-image: url("../img/facebook.png");
+}
+
+.twitter-icon {
+  background-image: url("../img/twitter.png");
+}
+
+.pinterest-icon {
+  background-image: url("../img/pinterest.png");
+}
+
+.instagram-icon {
+  background-image: url("../img/instagram.png");
+}
